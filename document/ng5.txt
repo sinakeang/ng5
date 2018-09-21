@@ -1,0 +1,5 @@
+How to add animations
+- npm install @angular/animations@latest -save
+- import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; to module.ts
+- import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations'; to component.ts
+
