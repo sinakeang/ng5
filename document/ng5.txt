@@ -3,3 +3,25 @@ How to add animations
 - import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; to module.ts
 - import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations'; to component.ts
 
+How to deploy
+- ng build
+creates a dist folder when you run that command
+note that the files is roughly 3 mbs which is big
+
+-ng build --prod
+prod flag reduce the size of the build and add hash to file name
+
+-ng build --prod --base-href="myurl"
+
+How to deploy on github
+npm install -g angular-cli-ghpages
+go to github and create a repo
+git add .
+git commit -m "first commit"
+git remote add origin git@github.com:firstlastname/ng5.get
+git push -u origin master
+ng build --prod --base-href="https://firstlastname.io/ng5/"
+angular-cli-ghpages
+if it says "Successfully published!"
+then go to url "https:firstlastname.github.io/ng5"
+
