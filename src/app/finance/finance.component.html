@@ -1,24 +1,29 @@
 <div class="container color-dark">
   <div class="col">
-    <p>Add Biweekly Items</p>
-  </div>
-  <div class="col">
-    <p>Your bucket list ({{ items.length }})</p>
+    <p>Add Biweekly Incomes</p>
   </div>
 </div>
 <div class="container color-light">
   <div class="col">
-    <p class="sm">Add Item</p>
+    <p class="sm">Add Income</p>
     <form>
-      <input type="text" class="txt" name="item" placeholder="Add an item.." [(ngModel)]="itemText">
-      <input type="submit" class="btn" [value]="btnText" (click)="addItem()">
+      <input type="text" class="txt" name="incomeAmount" placeholder="Add income amount" 
+      [(ngModel)]="incomeAmountText">
+      <input type="text" class="txt" name="incomeStartDate" placeholder="Add pay date"
+      [(ngModel)]="incomeStartDateText">
+      <input type="submit" class="btn" [value]="btnIncomeText" (click)="addIncome(incomeAmountText,incomeStartDateText)">
     </form>
   </div>
 </div>
-<div class="container color-light" [@items]="items.length">
+<div class="container color-dark">
   <div class="col">
-    <p class="life-container" *ngFor="let item of items; let i = index" (click)="removeItem(i)">
-      {{ item }}
+    <p>List ({{ incomes.length }})</p>
+  </div>
+</div>
+<div class="container color-light" [@incomes]="incomes.length">
+  <div class="col">
+    <p class="life-container" *ngFor="let income of incomes; let i = index" (click)="removeIncome(i)">
+      {{ income.startDate }} {{ income.amount }}
     </p>
   </div>
 </div>

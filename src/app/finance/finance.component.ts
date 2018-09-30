@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { FinanceService } from './finance.service';
+import { Income } from './income';
 
 @Component({
   selector: 'app-finance',
   templateUrl: './finance.component.html',
   styleUrls: ['./finance.component.scss'],
   animations: [
-    trigger('items', [
+    trigger('incomes', [
       transition('* => *', [
         query(':enter', style({ opacity: 0 }), {optional: true}),  
         query(':enter', stagger('300ms', [
@@ -29,25 +30,24 @@ import { FinanceService } from './finance.service';
 export class FinanceComponent implements OnInit {
 
   itemCount: number;
-  btnText: string = 'Add an item';
-  itemText: string;
-  items = [];
+  btnIncomeText: string = 'Add income';
+  incomes: Income[] = [];
 
   constructor(private _data: FinanceService) { }
 
   ngOnInit() {
-    this._data.item.subscribe(res => this.items = res);
-    this._data.changeItem(this.items);
+    this._data.income.subscribe(res => this.incomes = res);
+    this._data.changeIncome(this.incomes);
   }
 
-  addItem() {
-    this.items.push(this.itemText);
-    this.itemText = '';
-    this._data.changeItem(this.items);
+  addIncome(incomeAmountText,incomeStartDateText) {
+    this.incomes.push({amount: incomeAmountText, startDate: incomeStartDateText});
+    this._data.changeIncome(this.incomes);
   }
 
-  removeItem(i) {
-    this.items.splice(i, 1);
-    this._data.changeItem(this.items);
+  removeIncome(i) {
+    this.incomes.splice(i, 1);
+    this._data.changeIncome(this.incomes);
   }
 }
+

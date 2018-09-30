@@ -1,16 +1,18 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Injectable } from "@angular/core";
+import { Income } from "./income";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FinanceService {
-  private items = new BehaviorSubject<any>(['My first item', 'My second item']);
-  item = this.items.asObservable();
+  private incomeData: Income = { amount: "$1000", startDate: "Sep27"};
+  private incomes = new BehaviorSubject<any>([this.incomeData]);
+  income = this.incomes.asObservable();
 
   constructor() { }
 
-  changeItem(item) {
-    this.items.next(item);
+  changeIncome(income) {
+    this.incomes.next(income);
   }
 }
